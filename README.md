@@ -1,1 +1,2 @@
 # SelfCord
+Javascript self bot
