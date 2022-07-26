@@ -11,3 +11,6 @@ NodeJS self bot
 * Changing server message listener id: {prefix}channel {channelid}
 * Changing channel sender id: {prefix}channel {channelid}
 * Sending message: Press Q in the console
+
+# Information
+* 1.) Can this be used as a headless client? Answer: Yes, you would just manually change your config file for the channel and server.
