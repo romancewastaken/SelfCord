@@ -105,7 +105,7 @@ client.on('message', (message) =>
 
           else
           {
-            console.log(cc.set(config.nameColor, `${message.author.tag }`) + (cc.set(config.messageColor, ` ${message}`)));
+            console.log(cc.set(config.messageColor, `[${message.channel.name}]`) + cc.set(config.nameColor, ` ${message.author.tag }`) + (cc.set(config.messageColor, ` ${message}`)));
             console.log(""); //space out for future messages
           }
         }
