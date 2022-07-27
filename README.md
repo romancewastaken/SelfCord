@@ -8,7 +8,7 @@ NodeJS self bot
 * The rest can be changed at anytime using commands
 
 # Usage
-* Changing server message listener id: {prefix}channel {channelid}
+* Changing server message listener id: {prefix}server{serverID}
 * Changing channel sender id: {prefix}channel {channelid}
 * Sending message: Press Q in the console
 
