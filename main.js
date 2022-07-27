@@ -97,8 +97,8 @@ client.on('message', (message) =>
       {
         if (message.guild.id == config.server)
         {
-          console.log(cc.set("fg_yellow", `${message.author.tag }`));
-          console.log(cc.set("fg_white", `${message}`));
+          console.log(cc.set("fg_yellow", `${message.author.tag }`) + (cc.set("fg_white", ` ${message}`)));
+          console.log(""); //space out for future messages
         }
       }
     }
