@@ -99,13 +99,13 @@ client.on('message', (message) =>
         {
           if (message.attachments.size)
           {
-            console.log(cc.set(config.nameColor, `${message.author.tag }`) + (cc.set(config.messageColor, ` ${message.attachments.first().url}`)));
+            console.log(cc.set(config.messageColor, `[${message.guild.name}]`) + cc.set(config.messageColor, `[${message.channel.name}]`) + cc.set(config.nameColor, ` ${message.author.tag }`) + (cc.set(config.messageColor, ` ${message}`)));
             console.log(""); //space out for future messages
           }
 
           else
           {
-            console.log(cc.set(config.messageColor, `[${message.channel.name}]`) + cc.set(config.nameColor, ` ${message.author.tag }`) + (cc.set(config.messageColor, ` ${message}`)));
+            console.log(cc.set(config.messageColor, `[${message.guild.name}]`) + cc.set(config.messageColor, `[${message.channel.name}]`) + cc.set(config.nameColor, ` ${message.author.tag }`) + (cc.set(config.messageColor, ` ${message}`)));
             console.log(""); //space out for future messages
           }
         }
