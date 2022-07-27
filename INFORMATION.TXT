@@ -1,0 +1,25 @@
+##CONFIG
+
+* Colors
+Here all the colors:
+fg_black
+fg_dark_gray
+fg_gray
+fg_white
+fg_dark_red
+fg_red
+fg_dark_yellow
+fg_yellow
+fg_dark_cyan
+fg_darkgreen
+fg_green
+fg_dark_blue
+fg_blue
+fg_dark_purple
+fg_purple
+
+
+##USAGE
+
+* Sending a message
+Make sure you set a channel ID to send to, you can do this by editing your config file manually OR by sending {prefix}channel {id} in a discord server channel
