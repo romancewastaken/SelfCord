@@ -3,5 +3,7 @@
     "server": "",
     "channel": "",
     "token": "",
-    "prefix": "s!"
+    "prefix": "s!",
+    "nameColor": "fg_yellow",
+    "messageColor": "fg_white"
 }
