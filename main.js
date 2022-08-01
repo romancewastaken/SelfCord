@@ -102,7 +102,8 @@ client.on('message', (message) =>
         {
           if (message.attachments.size)
           {
-            console.log(cc.set(config.messageColor, `[${message.guild.name}]`) + cc.set(config.messageColor, `[${message.channel.name}]`) + cc.set(config.nameColor, ` ${message.author.tag }`) + (cc.set(config.messageColor, ` ${message}`)));
+            //console.log(cc.set(config.messageColor, `[${message.guild.name}]`) + cc.set(config.messageColor, `[${message.channel.name}]`) + cc.set(config.nameColor, ` ${message.author.tag }`) + (cc.set(config.messageColor, ` ${message}`)));
+            console.log(cc.set(config.messageColor, `[${message.guild.name}]`) + cc.set(config.messageColor, `[${message.channel.name}]`) + cc.set("fg_white", " <") + cc.set(config.nameColor,`${message.author.tag}`) + cc.set("fg_white", ">") + (cc.set(config.messageColor, ` ${message}`)));
             console.log(""); //space out for future messages
           }
 
@@ -112,7 +113,8 @@ client.on('message', (message) =>
             //{
               //convert id to mention
             //}
-            console.log(cc.set(config.messageColor, `[${message.guild.name}]`) + cc.set(config.messageColor, `[${message.channel.name}]`) + cc.set(config.nameColor, ` ${message.author.tag }`) + (cc.set(config.messageColor, ` ${message}`)));
+            //console.log(cc.set(config.messageColor, `[${message.guild.name}]`) + cc.set(config.messageColor, `[${message.channel.name}]`) + cc.set(config.nameColor, ` ${message.author.tag }`) + (cc.set(config.messageColor, ` ${message}`)));
+            console.log(cc.set(config.messageColor, `[${message.guild.name}]`) + cc.set(config.messageColor, `[${message.channel.name}]`) + cc.set("fg_white", " <") + cc.set(config.nameColor,`${message.author.tag}`) + cc.set("fg_white", ">") + (cc.set(config.messageColor, ` ${message}`)));
             console.log(""); //space out for future messages
           }
         }
