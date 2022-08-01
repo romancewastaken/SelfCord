@@ -6,7 +6,8 @@ const cc = require(`node-console-colors`);
 
 const readline = require('readline');
 
-const rl = readline.createInterface({
+const rl = readline.createInterface
+({
   input: process.stdin,
   output: process.stdout
 });
@@ -24,6 +25,8 @@ const figlet = require(`figlet`);
 const config = require(`./Data/config.json`);
 
 const appconfig = require(`./Data/app.js`);
+
+setTerminalTitle("SelfCord");
 
 
      // listen for the "keypress" event
@@ -105,6 +108,10 @@ client.on('message', (message) =>
 
           else
           {
+            //if (message.mentions.members.size) 
+            //{
+              //convert id to mention
+            //}
             console.log(cc.set(config.messageColor, `[${message.guild.name}]`) + cc.set(config.messageColor, `[${message.channel.name}]`) + cc.set(config.nameColor, ` ${message.author.tag }`) + (cc.set(config.messageColor, ` ${message}`)));
             console.log(""); //space out for future messages
           }
@@ -119,3 +126,9 @@ client.on('message', (message) =>
 })
 
 client.login(config.token);
+
+
+function setTerminalTitle(title)
+{
+  process.stdout.write( String.fromCharCode(27) + "]0;" + title + String.fromCharCode(7));
+}
