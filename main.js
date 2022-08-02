@@ -83,13 +83,17 @@ client.on('message', (message) =>
 
   if (message.content.startsWith(config.prefix)) 
   {
-    const args = message.content.slice(config.prefix.length).split(/ +/)
-    const commandName = args.shift().toLowerCase()
-    const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
-    if (command) 
+    if (message.author.id == config.ownerID)
     {
-        client.commands.get(command.name).execute(message, args, client);
+      const args = message.content.slice(config.prefix.length).split(/ +/)
+      const commandName = args.shift().toLowerCase()
+      const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
+      if (command) 
+      {
+          client.commands.get(command.name).execute(message, args, client);
+      }
     }
+    else return;
   }
 
   else
