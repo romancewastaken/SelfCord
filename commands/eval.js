@@ -21,15 +21,14 @@ module.exports =
                     {
                         case msg.includes ("console.log"):
                             var msgtmp = msg.split('"');
-
                             message.channel.send(`Code: ${msg}`);
                             message.channel.send(`Result: ${msgtmp[1]}`);
-                            break;
+                        break;
 
                             case msg.includes ("function"):
                                 message.channel.send(`Code: ${msg}`);
                                 message.channel.send("Cannot evaluate functions")
-                                break;
+                        break;
                     }
             }
 
