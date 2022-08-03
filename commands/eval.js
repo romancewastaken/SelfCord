@@ -19,13 +19,13 @@ module.exports =
                 case undefined:
                     switch (true)
                     {
-                        case msg.includes ("console.log"):
+                        case msg.includes("console.log"):
                             var msgtmp = msg.split('"');
                             message.channel.send(`Code: ${msg}`);
                             message.channel.send(`Result: ${msgtmp[1]}`);
                         break;
 
-                            case msg.includes ("function"):
+                            case msg.includes("function"):
                                 message.channel.send(`Code: ${msg}`);
                                 message.channel.send("Cannot evaluate functions")
                         break;
@@ -35,10 +35,28 @@ module.exports =
             message.channel.send(`Code: ${msg}`);
             message.channel.send(`Result: ${evaled}`);
         }
+
         catch (ex)
         {
+            let extmp = ex.toString();
+
+
             message.channel.send("SelfCord message:");
-            message.channel.send(`Exception: ${ex}`);
+            
+            switch (true)
+            {
+                case extmp.includes("SyntaxError: Unexpected end of input"):
+                    message.channel.send(`A function or a loop is not finished`);
+                break;
+
+                case extmp.includes("is not defined"):
+                    message.channel.send(`A reference to a function, variable, or object is made but is not defined`);
+                break;
+
+                default:
+                    message.channel.send(`Exception: ${ex}`);
+                break;
+            }
         }
     }
 }
