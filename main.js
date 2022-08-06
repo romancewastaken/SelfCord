@@ -26,9 +26,18 @@ const config = require(`./Data/config.json`);
 
 const appconfig = require(`./Data/app.js`);
 
+
 setTerminalTitle("SelfCord");
 
+Start();
 
+messageListener();
+
+
+
+function Start()
+{
+  
      // listen for the "keypress" event
      process.stdin.on('keypress', (str, key) => 
      {
@@ -48,19 +57,20 @@ setTerminalTitle("SelfCord");
          }
      });
 
-client.commands = new Discord.Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-for (const file of commandFiles)
-{
-  const command = require(`./commands/${file}`);
-  client.commands.set(command.name, command);
-}
+  // get all the commands
+  client.commands = new Discord.Collection();
+  const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+  for (const file of commandFiles)
+  {
+    const command = require(`./commands/${file}`);
+    client.commands.set(command.name, command);
+  }
 
-console.log("");
-console.log("SelfCord attemtping to login");
+  console.log("");
+  console.log("SelfCord attemtping to login");
 
-client.on('ready', () => 
-{ 
+  client.on('ready', () => 
+  { 
     console.clear();
     figlet('Self Cord', function(err, data) 
     {
@@ -74,7 +84,30 @@ client.on('ready', () =>
   });
 });
 
-client.on('message', (message) => 
+  client.login(config.token);
+}
+
+function setTerminalTitle(title)
+{
+  process.stdout.write(String.fromCharCode(27) + "]0;" + title + String.fromCharCode(7));
+}
+
+function removeMention(message, name) 
+{
+  if (isFinite(message.substring(message.indexOf("<@"), message.substring(message.indexOf("<@")).indexOf(">") + message.indexOf("<@")).replace("<@", ""))) 
+  {
+      return message.replace(message.substring(message.indexOf("<@"), message.substring(message.indexOf("<@")).indexOf(">") + message.indexOf("<@") + 1), name);
+  }
+   
+  else
+  {
+      return message;
+  }
+}
+
+function messageListener()
+{
+  client.on('message', (message) => 
 {
   if (message.author.bot) 
   {
@@ -140,23 +173,4 @@ client.on('message', (message) =>
     }
   }
 })
-
-client.login(config.token);
-
-
-function setTerminalTitle(title)
-{
-  process.stdout.write(String.fromCharCode(27) + "]0;" + title + String.fromCharCode(7));
-}
-
-function removeMention(message, name) 
-{
-  if (isFinite(message.substring(message.indexOf("<@"), message.substring(message.indexOf("<@")).indexOf(">") + message.indexOf("<@")).replace("<@", ""))) 
-  {
-      return message.replace(message.substring(message.indexOf("<@"), message.substring(message.indexOf("<@")).indexOf(">") + message.indexOf("<@") + 1), name);
-  } 
-  else
-   {
-      return message;
-  }
 }
