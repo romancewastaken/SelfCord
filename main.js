@@ -106,26 +106,37 @@ client.on('message', (message) =>
         {
           if (message.attachments.size)
           {
+            //if theres an attachment, convert it to a url
             console.log(cc.set(config.messageColor, `[${message.guild.name}]`) + cc.set(config.messageColor, `[${message.channel.name}]`) + cc.set("fg_white", " <") + cc.set(config.nameColor,`${message.author.tag}`) + cc.set("fg_white", ">") + (cc.set(config.messageColor, ` ${message.attachments.first().url}`)));
             console.log(""); //space out for future messages
           }
 
-          else
+          else if (!message.attachments.size)
           {
-            //if (message.mentions.members.size) 
-            //{
-              //convert id to mention
-            //}
+            var user = message.mentions.users.first();
 
-            console.log(cc.set(config.serverColor, `[${message.guild.name}]`) + cc.set(config.channelColor, `[${message.channel.name}]`) + cc.set("fg_white", " <") + cc.set(config.nameColor,`${message.author.tag}`) + cc.set("fg_white", ">") + (cc.set(config.messageColor, ` ${message}`)));
-            console.log(""); //space out for future messages
+            if (user === undefined) 
+            {
+              //if no mention, continue as normal
+              console.log(cc.set(config.serverColor, `[${message.guild.name}]`) + cc.set(config.channelColor, `[${message.channel.name}]`) + cc.set("fg_white", " <") + cc.set(config.nameColor,`${message.author.tag}`) + cc.set("fg_white", ">") + (cc.set(config.messageColor, ` ${message}`)));
+              console.log(""); //space out for future messages
+            }
+
+            else if (user)
+            {
+              //if theres a mention, convert mentioned to username
+              var name = "@" + user.tag;
+              
+              console.log(cc.set(config.messageColor, `[${message.guild.name}]`) + cc.set(config.messageColor, `[${message.channel.name}]`) + cc.set("fg_white", " <") + cc.set(config.nameColor,`${message.author.tag}`) + cc.set("fg_white", ">") + (cc.set(config.messageColor, ` ${removeMention(message.toString(), name)}`)));
+              console.log(""); //space out for future messages
+            }
           }
         }
       }
     }
     catch (ex)
     {
-      console.log(`There was an error showing messages. Error: ${ex}`);
+      console.log(`There was an error showing a message. Error: ${ex}`);
     }
   }
 })
@@ -136,4 +147,16 @@ client.login(config.token);
 function setTerminalTitle(title)
 {
   process.stdout.write(String.fromCharCode(27) + "]0;" + title + String.fromCharCode(7));
+}
+
+function removeMention(message, name) 
+{
+  if (isFinite(message.substring(message.indexOf("<@"), message.substring(message.indexOf("<@")).indexOf(">") + message.indexOf("<@")).replace("<@", ""))) 
+  {
+      return message.replace(message.substring(message.indexOf("<@"), message.substring(message.indexOf("<@")).indexOf(">") + message.indexOf("<@") + 1), name);
+  } 
+  else
+   {
+      return message;
+  }
 }
