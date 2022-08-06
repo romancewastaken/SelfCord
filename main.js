@@ -108,25 +108,25 @@ function removeMention(message, name)
 function messageListener()
 {
   client.on('message', (message) => 
-{
-  if (message.author.bot) 
   {
-    return;
-  }
-
-  if (message.content.startsWith(config.prefix)) 
-  {
-    if (message.author.id == config.ownerID)
+    if (message.author.bot) 
     {
-      const args = message.content.slice(config.prefix.length).split(/ +/)
-      const commandName = args.shift().toLowerCase()
-      const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
-      if (command) 
-      {
-          client.commands.get(command.name).execute(message, args, client);
-      }
+      return;
     }
-    else return;
+    
+    if (message.content.startsWith(config.prefix)) 
+    {
+      if (message.author.id == config.ownerID)
+      {
+        const args = message.content.slice(config.prefix.length).split(/ +/)
+        const commandName = args.shift().toLowerCase()
+        const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName))
+        if (command) 
+        {
+          client.commands.get(command.name).execute(message, args, client);
+        }
+      }
+      else return;
   }
 
   else
@@ -160,7 +160,8 @@ function messageListener()
               //if theres a mention, convert mentioned to username
               var name = "@" + user.tag;
               
-              console.log(cc.set(config.messageColor, `[${message.guild.name}]`) + cc.set(config.messageColor, `[${message.channel.name}]`) + cc.set("fg_white", " <") + cc.set(config.nameColor,`${message.author.tag}`) + cc.set("fg_white", ">") + (cc.set(config.messageColor, ` ${removeMention(message.toString(), name)}`)));
+              console.log(cc.set(config.serverColor, `[${message.guild.name}]`) + cc.set(config.channelColor, `[${message.channel.name}]`) + cc.set("fg_white", " <") + cc.set(config.nameColor,`${message.author.tag}`) + cc.set("fg_white", ">") + (cc.set(config.messageColor, ` ${removeMention(message.toString(), name)}`)));
+              //console.log(cc.set(config.serverColor, `[${message.guild.name}]`) + cc.set(config.channelColor, `[${message.channel.name}]`) + cc.set("fg_white", " <") + cc.set(config.nameColor,`${message.author.tag}`) + cc.set("fg_white", ">") + (cc.set(config.messageColor, ` ${message}`)));
               console.log(""); //space out for future messages
             }
           }
