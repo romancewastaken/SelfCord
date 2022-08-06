@@ -6,5 +6,6 @@
     "prefix": "s!",
     "nameColor": "fg_yellow",
     "channelColor": "fg_white",
-    "serverColor": "fg_blue"
+    "serverColor": "fg_blue",
+    "messageColor": "fg_white"
 }
