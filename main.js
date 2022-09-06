@@ -37,7 +37,7 @@ messageListener();
 
 function Start()
 {
-  
+  Logger.logError("test");
      // listen for the "keypress" event
      process.stdin.on('keypress', (str, key) => 
      {
@@ -160,10 +160,9 @@ function messageListener()
               //if theres a mention, convert mentioned to username
               var name = "@" + user.tag;
               
-              console.log(cc.set(config.serverColor, `[${message.guild.name}]`) + cc.set(config.channelColor, `[${message.channel.name}]`) + cc.set("fg_white", " <") + cc.set(config.nameColor,`${message.author.tag}`) + cc.set("fg_white", ">") + (cc.set(config.messageColor, ` ${removeMention(message.toString(), name)}`)));
-              //console.log(cc.set(config.serverColor, `[${message.guild.name}]`) + cc.set(config.channelColor, `[${message.channel.name}]`) + cc.set("fg_white", " <") + cc.set(config.nameColor,`${message.author.tag}`) + cc.set("fg_white", ">") + (cc.set(config.messageColor, ` ${message}`)));
+              console.log(cc.set(config.serverColor, `[${message.guild.name}]`) + cc.set(config.channelColor, `[${message.channel.name}]`) + cc.set("fg_white", " <") + cc.set(config.nameColor,`${message.author.tag}`) + cc.set("fg_white", ">") + (cc.set(config.messageColor, ` ${removeMention(` ${message}`, name)}`)));
               console.log(""); //space out for future messages
-            }
+          }
           }
         }
       }
@@ -173,5 +172,4 @@ function messageListener()
       console.log(`There was an error showing a message. Error: ${ex}`);
     }
   }
-})
-}
+})}
